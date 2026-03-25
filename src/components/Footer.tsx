@@ -34,6 +34,7 @@ export default function Footer() {
             <li><Link to="/auctions" className="hover:text-red-600 transition-colors">Upcoming Auctions</Link></li>
             <li><Link to="/buy" className="hover:text-red-600 transition-colors">How to Buy</Link></li>
             <li><Link to="/sell" className="hover:text-red-600 transition-colors">Sell Your Trucks</Link></li>
+            <li><Link to="/how-it-works" className="hover:text-red-600 transition-colors">How It Works</Link></li>
             <li><Link to="/about" className="hover:text-red-600 transition-colors">About Us</Link></li>
           </ul>
         </div>

@@ -14,6 +14,7 @@ import Auctions from './pages/Auctions';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Register from './pages/Register';
+import HowItWorks from './pages/HowItWorks';
 import ChatWidget from './components/ChatWidget';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/buy" element={<Buy />} />
             <Route path="/auctions" element={<Auctions />} />
             <Route path="/about" element={<About />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/register" element={<Register />} />
             {/* Placeholders for other routes */}
