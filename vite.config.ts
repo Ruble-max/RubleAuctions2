@@ -8,7 +8,7 @@ export default defineConfig(({mode}) => {
   return {
     // If you are deploying to GitHub Pages under a subpath (e.g., https://username.github.io/repo-name/),
     // uncomment the line below and replace 'repo-name' with your actual repository name.
-    base: '/RubleAuction2/',
+    base: '/RubleAuctions2/',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

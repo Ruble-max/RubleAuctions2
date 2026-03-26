@@ -2,7 +2,15 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, User, Bot, Headset } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Initialize lazily to prevent crashing the entire app if the API key is missing (e.g., on GitHub Pages)
+let ai: GoogleGenAI | null = null;
+try {
+  if (process.env.GEMINI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  }
+} catch (e) {
+  console.warn("Failed to initialize GoogleGenAI:", e);
+}
 
 type Message = {
   id: string;
@@ -23,6 +31,10 @@ export default function ChatWidget() {
 
   useEffect(() => {
     try {
+      if (!ai) {
+        console.warn("AI is not initialized. Chat will be disabled.");
+        return;
+      }
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
