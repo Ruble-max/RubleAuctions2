@@ -15,6 +15,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Register from './pages/Register';
 import HowItWorks from './pages/HowItWorks';
+import ChatWidget from './components/ChatWidget';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <ChatWidget />
       </div>
     </Router>
   );
