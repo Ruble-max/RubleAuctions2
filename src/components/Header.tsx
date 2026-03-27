@@ -8,9 +8,9 @@ export default function Header() {
       <div className="bg-slate-900 text-slate-300 text-xs py-2 px-4 sm:px-6 lg:px-8 flex justify-start items-center overflow-x-auto">
         <div className="flex items-center gap-6 font-medium whitespace-nowrap">
           <span className="text-slate-400 uppercase tracking-wider text-[10px]">Our Network:</span>
-          <a href="#" className="hover:text-white transition-colors">Ruble Trucks</a>
-          <a href="#" className="hover:text-white transition-colors">Ruble Parts</a>
-          <a href="#" className="hover:text-white transition-colors">Ruble Logistics</a>
+          <a href="#" className="hover:text-white transition-colors">RTS</a>
+          <a href="#" className="hover:text-white transition-colors">RTG</a>
+          <a href="#" className="hover:text-white transition-colors">RTM</a>
         </div>
       </div>
       

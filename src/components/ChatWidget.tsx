@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, FormEvent } from 'react';
 import { MessageCircle, X, Send, User, Bot, Headset } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
@@ -51,7 +51,7 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isOpen, mode, isTyping]);
 
-  const handleSend = async (e?: React.FormEvent) => {
+  const handleSend = async (e?: FormEvent) => {
     e?.preventDefault();
     if (!input.trim() || !chatSession) return;
     
@@ -71,7 +71,7 @@ export default function ChatWidget() {
     }
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = (e: FormEvent) => {
     e.preventDefault();
     // In a real app, this would send data to a backend
     setMode('submitted');
