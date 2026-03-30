@@ -4,3 +4,11 @@
 @theme {
   --font-sans: "Crimson Pro", ui-sans-serif, system-ui, sans-serif;
 }
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility pb-safe-16 {
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+}

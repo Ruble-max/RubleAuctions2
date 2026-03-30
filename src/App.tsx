@@ -20,7 +20,7 @@ import ChatWidget from './components/ChatWidget';
 export default function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen font-sans">
+      <div className="flex flex-col min-h-screen font-sans pb-safe-16 lg:pb-0">
         <Header />
         <main className="flex-grow">
           <Routes>

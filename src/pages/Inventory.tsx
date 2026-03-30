@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import { Search, Filter, ChevronRight, SlidersHorizontal, X } from 'lucide-react';
 
 export default function Inventory() {
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
   const trucks = [
     { id: 1, year: 2021, make: 'Peterbilt', model: '579', type: 'Sleeper Truck', bid: '$42,500', image: 'https://images.unsplash.com/photo-1586191552066-e52fd15cbef5?q=80&w=800&auto=format&fit=crop', lot: '104' },
     { id: 2, year: 2019, make: 'Ford', model: 'F-550 Service Body', type: 'Service Truck', bid: '$15,000', image: 'https://images.unsplash.com/photo-1605816988069-b11383b50717?q=80&w=800&auto=format&fit=crop', lot: '212' },
@@ -28,14 +31,79 @@ export default function Inventory() {
               />
               <Search className="absolute left-3 top-3.5 w-5 h-5 text-slate-400" />
             </div>
-            <button className="bg-slate-900 text-white px-4 py-3 rounded flex items-center gap-2 font-bold uppercase tracking-wide md:hidden">
+            <button 
+              onClick={() => setIsMobileFiltersOpen(true)}
+              className="bg-slate-900 text-white px-4 py-3 rounded flex items-center gap-2 font-bold uppercase tracking-wide lg:hidden"
+            >
               <Filter className="w-5 h-5" />
             </button>
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Filters */}
+          {/* Mobile Filters Overlay */}
+          {isMobileFiltersOpen && (
+            <div className="fixed inset-0 z-50 flex lg:hidden">
+              <div 
+                className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm"
+                onClick={() => setIsMobileFiltersOpen(false)}
+              ></div>
+              <div className="relative ml-auto w-full max-w-xs h-full bg-white shadow-xl flex flex-col overflow-y-auto animate-in slide-in-from-right duration-300">
+                <div className="flex items-center justify-between p-4 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <SlidersHorizontal className="w-5 h-5 text-red-600" />
+                    <h2 className="font-black uppercase tracking-wide text-slate-900">Filters</h2>
+                  </div>
+                  <button 
+                    onClick={() => setIsMobileFiltersOpen(false)}
+                    className="p-2 text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+                
+                <div className="p-6 flex-grow">
+                  <div className="mb-6">
+                    <h3 className="font-bold text-sm uppercase tracking-widest text-slate-500 mb-3">Category</h3>
+                    <div className="space-y-3">
+                      {['Sleeper Trucks', 'Day Cabs', 'Dump Trucks', 'Service Trucks', 'Box Trucks', 'Trailers'].map(cat => (
+                        <label key={cat} className="flex items-center gap-3 cursor-pointer group">
+                          <input type="checkbox" className="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-600" />
+                          <span className="text-slate-700 font-medium group-hover:text-red-600 transition-colors">{cat}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="font-bold text-sm uppercase tracking-widest text-slate-500 mb-3">Make</h3>
+                    <div className="space-y-3">
+                      {['Freightliner', 'Peterbilt', 'Kenworth', 'Volvo', 'Mack', 'Ford'].map(make => (
+                        <label key={make} className="flex items-center gap-3 cursor-pointer group">
+                          <input type="checkbox" className="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-600" />
+                          <span className="text-slate-700 font-medium group-hover:text-red-600 transition-colors">{make}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-4 border-t border-slate-200 bg-slate-50">
+                  <button 
+                    onClick={() => setIsMobileFiltersOpen(false)}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded font-black text-sm uppercase tracking-widest transition-colors mb-3"
+                  >
+                    Apply Filters
+                  </button>
+                  <button className="w-full bg-slate-200 hover:bg-slate-300 text-slate-900 py-3 rounded font-bold text-sm uppercase tracking-widest transition-colors">
+                    Clear Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Desktop Sidebar Filters */}
           <div className="hidden lg:block w-64 flex-shrink-0">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 sticky top-28">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100">
